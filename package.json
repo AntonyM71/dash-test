@@ -10,9 +10,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "bootstrap-vue": "^2.21.2",
+    "chart.js": "^3.6.2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-chart-3": "^0.5.11",
+    "vue-plotly": "^1.1.0",
     "vue-router": "^4.0.0-0",
+    "vue-typed-emit": "^1.1.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
