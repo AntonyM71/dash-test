@@ -170,6 +170,21 @@
       },
       "description": "We can also map getters individually, or using a the `mapGetters` helper function, inthe same way as actions.",
       "title": "Using getters"
+    },
+    {
+      "file": "README.md",
+      "selection": {
+        "start": {
+          "line": 38,
+          "character": 1
+        },
+        "end": {
+          "line": 39,
+          "character": 223
+        }
+      },
+      "description": "Vue devtools is available and works wonderfully, providing insight into both Vue and Vuex, however currently (02/22) it's Vue3 integration doesn't seem to be fully functional.",
+      "title": "Vue Devtools"
     }
   ]
 }
