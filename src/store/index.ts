@@ -1,24 +1,38 @@
-import { createStore } from "vuex";
+import {APIPokemon} from "@/api/types";
+import {createStore} from "vuex";
 
 export default createStore({
-  state(): stateType {
+  state(): TeamState {
     return {
-      testState: "myString",
-      testNumbers: {
-      x: [1,2,3,4,5,6,7,8,9], y: [9,8,7,6,5,4,3,2,1,]
-      }
+      members: []
     };
   },
   mutations: {
-    newString(state: stateType, newstr: string) {
-      state.testState = newstr;
+    addMember(state: TeamState, action: APIPokemon) {
+      if (state.members.length < 6) {
+        state.members = state.members.concat(action);
+      }
     },
+    removeMember(state: TeamState, action: string) {
+      state.members = state.members.filter((m) => m.id !== action);
+    }
   },
-  actions: {},
+  actions: {
+    addMember({commit}, id) {
+      commit("addMember", id);
+    },
+    deleteMember({commit}, id) {
+      commit("removeMember", id);
+    }
+  },
   modules: {},
+  getters: {
+    numberOfTeamMembers(state) {
+      return state.members.length;
+    }
+  }
 });
 
-interface stateType {
-  testState: string;
-  testNumbers: {x: number[], y: number[]};
+export interface TeamState {
+  members: APIPokemon[];
 }

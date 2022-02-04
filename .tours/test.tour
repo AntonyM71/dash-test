@@ -1,0 +1,175 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Vuex Guide",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "Overall, a vuex store is an implementation of the Flux state management pattern, which is the same underlying pattern as used by Redux.\nWe're going to start off by looking at the Vuex Store itself, and later move on to how we register the Vuex Store, and then how we can access it's values and actions."
+    },
+    {
+      "file": "src/store/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 9,
+          "character": 5
+        }
+      },
+      "description": "Instantiate the initial state of the vuex store",
+      "title": "The initial State"
+    },
+    {
+      "file": "src/store/index.ts",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 2
+        },
+        "end": {
+          "line": 18,
+          "character": 6
+        }
+      },
+      "description": "Add the mutations to the store, these are comparable to Redux \"Reducers\", however they mutate the existing state, rather than requiring us to make a copy and commit it.",
+      "title": "Mutating the State"
+    },
+    {
+      "file": "src/store/index.ts",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 27,
+          "character": 5
+        }
+      },
+      "description": "Actions only differ from their redux counterparts in their syntax. These actions are very simple; however you can access other fields from the state, and perform async requests here.",
+      "title": "Actions to trigger the mutations"
+    },
+    {
+      "file": "src/store/index.ts",
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 1
+        },
+        "end": {
+          "line": 28,
+          "character": 14
+        }
+      },
+      "description": "For larger applications we can use state modules, which are comparable to 'slices' in redux. When accessing actions they would be prepended with name of the slice. For example if we called this slice Pokemon, we would access the `addmember` action with `pokemon/addMember`.\n\nhttps://vuex.vuejs.org/guide/modules.html",
+      "title": "Modules"
+    },
+    {
+      "file": "src/store/index.ts",
+      "selection": {
+        "start": {
+          "line": 29,
+          "character": 1
+        },
+        "end": {
+          "line": 32,
+          "character": 6
+        }
+      },
+      "description": "We can also add getters, to calculate properties derived from the state. These are comparable to Redux Selectors, and are methods that return values from the state.\n\nhttps://vuex.vuejs.org/guide/getters.html",
+      "title": "Defining Getters"
+    },
+    {
+      "file": "src/main.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 53
+        }
+      },
+      "description": "To register the store, we just import it and call app.use(). ",
+      "title": "Registering the store"
+    },
+    {
+      "file": "src/components/PokemonCard.vue",
+      "selection": {
+        "start": {
+          "line": 39,
+          "character": 4
+        },
+        "end": {
+          "line": 41,
+          "character": 8
+        }
+      },
+      "description": "To fire off an action, we can call dispatch it using it's name and the payload.  Unfortunately this is not typesafe.\n",
+      "title": "Dispatching actions directly"
+    },
+    {
+      "file": "src/components/TeamMemberCard.vue",
+      "selection": {
+        "start": {
+          "line": 36,
+          "character": 5
+        },
+        "end": {
+          "line": 38,
+          "character": 9
+        }
+      },
+      "description": "Or alternatively, we can use the `mapActions` helper, that will bind an array of actions to `this` for us. Unfortunately this is not typesafe.",
+      "title": "The `mapActions` helper"
+    },
+    {
+      "file": "src/components/TeamMemberCard.vue",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 6
+        },
+        "end": {
+          "line": 4,
+          "character": 42
+        }
+      },
+      "description": "And call the method using it's name.",
+      "title": "Using mapped actions"
+    },
+    {
+      "file": "src/views/Home.vue",
+      "selection": {
+        "start": {
+          "line": 38,
+          "character": 5
+        },
+        "end": {
+          "line": 40,
+          "character": 7
+        }
+      },
+      "description": "We can access the store directly, and assign it to a computed variable.",
+      "title": "Accessing the state directly"
+    },
+    {
+      "file": "src/views/Home.vue",
+      "selection": {
+        "start": {
+          "line": 34,
+          "character": 1
+        },
+        "end": {
+          "line": 35,
+          "character": 34
+        }
+      },
+      "description": "We can also map getters individually, or using a the `mapGetters` helper function, inthe same way as actions.",
+      "title": "Using getters"
+    }
+  ]
+}

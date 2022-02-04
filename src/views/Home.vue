@@ -1,32 +1,52 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js 3.0 app" />
-    <h2>{{ test }}</h2>
-    <h2>{{ testState }}</h2>
+    <h1>Your Team</h1>
+    <li v-for="member in teamMembers" :key="member">
+      <team-member-card v-bind="member" />
+      </li>
+    <h3>{{numberOfTeamMembers() + "/6"}} </h3>
+    <h1> Available Pokemon </h1>
+    <li v-for="pokemon in pokemons" :key="pokemon.id">
+      <pokemon-card v-bind="pokemon" />
+      </li>
+
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import store from "@/store";
+import { allPokemon} from "../api/api"
+import { APIPokemon } from "@/api/types";
+import PokemonCard from "@/components/PokemonCard.vue";
+import TeamMemberCard from "@/components/TeamMemberCard.vue"
+import { mapGetters } from "vuex";
+
+
 
 export default defineComponent({
+  components: { "pokemon-card": PokemonCard,
+  "team-member-card": TeamMemberCard},
   name: "Home",
-  components: {
-    HelloWorld,
-  },
   data: (): dataType => {
-    return { test: "string" };
+    return { pokemons: [] };
+  },
+  methods: {
+    ...mapGetters(["numberOfTeamMembers"])
   },
   computed: {
-    testState() {
-      return store.state.testState;
+    teamMembers() {
+      return store.state.members;
     },
   },
+  async mounted() {
+    const allRetreivedPokemon = await allPokemon()
+    this.pokemons = allRetreivedPokemon.pokemons;
+  }
 });
 
 interface dataType {
-  test: string;
+  pokemons: APIPokemon[];
 }
+
 </script>

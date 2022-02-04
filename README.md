@@ -1,5 +1,6 @@
-# dash-test
+# PokeVue
 
+Example repo showing the cop-js pokemon app implemented in Vue and Vuex
 ## Project setup
 ```
 npm install
