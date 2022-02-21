@@ -16,11 +16,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import store from "@/store";
-import { allPokemon} from "../api/api"
 import { APIPokemon } from "@/api/types";
 import PokemonCard from "@/components/PokemonCard.vue";
 import TeamMemberCard from "@/components/TeamMemberCard.vue"
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 
 
@@ -28,25 +27,22 @@ export default defineComponent({
   components: { "pokemon-card": PokemonCard,
   "team-member-card": TeamMemberCard},
   name: "Home",
-  data: (): dataType => {
-    return { pokemons: [] };
-  },
   methods: {
-    ...mapGetters(["numberOfTeamMembers"])
+    ...mapGetters({ numberOfTeamMembers: "numberOfTeamMembers", allPokemons: "allAvailablePokemons"}),
+    ...mapActions(["getAllPokemons"])
   },
   computed: {
     teamMembers() {
       return store.state.members;
     },
+    pokemons() {
+      return this.allPokemons()
+    }
   },
   async mounted() {
-    const allRetreivedPokemon = await allPokemon()
-    this.pokemons = allRetreivedPokemon.pokemons;
+  this.getAllPokemons()
+
   }
 });
-
-interface dataType {
-  pokemons: APIPokemon[];
-}
 
 </script>
